@@ -90,7 +90,7 @@
 			step : function () {
 
 				ax.radian1 += 0.01;
-				//ax.radian2 += 0.01;
+				ax.radian2 += 0.01;
 				if (ax.radian1 >= Math.PI * 2) {
 					ax.radian1 -= Math.PI * 2;
 				}
@@ -106,9 +106,10 @@
 				camera.position.y = Math.sin(ax.radian2) * distance + fp.y;
 				camera.position.z = Math.cos(ax.radian1) * distance + fp.z;
 
-				camera.rotation.y = ax.radian1;
-				camera.rotation.x = Math.PI * 2 - ax.radian2;
-
+                // camera.lookAt can be used to set orientation
+				camera.lookAt(new THREE.Vector3(fp.x,fp.y,fp.z));
+				
+				
 				distance = Math.abs(ax.radian1 - Math.PI) / Math.PI * 10 + 5
 
 			}
